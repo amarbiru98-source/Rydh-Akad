@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monitoring Kegiatan Harian</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 min-h-screen flex items-center justify-center p-4">
+
+    <div class="bg-white p-8 rounded-xl shadow-md w-full max-w-md">
+        <h2 class="text-2xl font-bold mb-6 text-gray-800 text-center">Input Kegiatan Harian</h2>
+        
+        <form id="monitoringForm" class="space-y-4">
+            <div>
+                <label class="block text-sm font-medium text-gray-700">Username / Inisial</label>
+                <input type="text" name="username" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+            </div>
+
+            <div>
+                <label class="block text-sm font-medium text-gray-700">Nama Kegiatan</label>
+                <input type="text" name="kegiatan" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+            </div>
+
+            <div>
+                <label class="block text-sm font-medium text-gray-700">Kategori</label>
+                <select name="kategori" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+                    <option value="Rutin">Rutin</option>
+                    <option value="Project">Project</option>
+                    <option value="Urgent">Urgent</option>
+                </select>
+            </div>
+
+            <div>
+                <label class="block text-sm font-medium text-gray-700">Status</label>
+                <div class="flex space-x-4 mt-2">
+                    <label class="flex items-center"><input type="radio" name="status" value="Proses" checked class="mr-2"> Proses</label>
+                    <label class="flex items-center"><input type="radio" name="status" value="Selesai" class="mr-2"> Selesai</label>
+                </div>
+            </div>
+
+            <div>
+                <label class="block text-sm font-medium text-gray-700">Keterangan Tambahan</label>
+                <textarea name="keterangan" rows="3" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"></textarea>
+            </div>
+
+            <button type="submit" id="submitBtn" class="w-full bg-blue-600 text-white font-bold py-2 px-4 rounded-md hover:bg-blue-700 transition duration-200">
+                Kirim Laporan
+            </button>
+        </form>
+        
+        <p id="responseMsg" class="mt-4 text-center text-sm font-semibold"></p>
+    </div>
+
+    <script>
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbwS8dAhgafSttSrtvIaGzt8qCe7-z5OLyPLghY_Y0-RNNQk2RLWHFLnfRWmQO8h0gms/exec'; // <--- PASTE LINK ANDA DI SINI
+        const form = document.getElementById('monitoringForm');
+        const btn = document.getElementById('submitBtn');
+        const msg = document.getElementById('responseMsg');
+
+        form.addEventListener('submit', e => {
+            e.preventDefault();
+            btn.disabled = true;
+            btn.innerText = "Mengirim...";
+            msg.innerText = "";
+
+            const formData = new FormData(form);
+            const data = Object.fromEntries(formData.entries());
+
+            fetch(scriptURL, { 
+                method: 'POST', 
+                body: JSON.stringify(data)
+            })
+            .then(response => {
+                msg.innerText = "Berhasil! Data telah tersimpan di Spreadsheet.";
+                msg.className = "mt-4 text-center text-sm font-semibold text-green-600";
+                form.reset();
+            })
+            .catch(error => {
+                msg.innerText = "Waduh, ada error nih!";
+                msg.className = "mt-4 text-center text-sm font-semibold text-red-600";
+                console.error('Error!', error.message);
+            })
+            .finally(() => {
+                btn.disabled = false;
+                btn.innerText = "Kirim Laporan";
+            });
+        });
+    </script>
+</body>
+</html>
