@@ -32,11 +32,12 @@
 
                 <div class="bg-slate-50 p-3 rounded-lg border space-y-2">
                     <span class="text-sm text-slate-700 font-medium block">2. Saum Sunnah hari ini?</span>
-                    <div class="flex space-x-4">
-                        <label class="flex items-center text-sm"><input type="radio" name="saum" value="Ya" class="mr-2"> Ya</label>
-                        <label class="flex items-center text-sm"><input type="radio" name="saum" value="Tidak" checked class="mr-2"> Tidak</label>
+                    <div class="grid grid-cols-3 gap-2">
+                        <label class="flex items-center text-xs"><input type="radio" name="saum" value="Ya" class="mr-1"> Ya</label>
+                        <label class="flex items-center text-xs"><input type="radio" name="saum" value="Tidak" checked class="mr-1"> Tidak</label>
+                        <label class="flex items-center text-xs text-pink-600 font-semibold"><input type="radio" name="saum" value="Sedang Haid" class="mr-1"> Sedang Haid</label>
                     </div>
-                    <input type="text" name="keterangan_saum" placeholder="Jenis saum (misal: Senin-Kamis)" class="w-full mt-2 p-2 text-sm border rounded">
+                    <input type="text" name="keterangan_saum" placeholder="Jenis saum/Catatan" class="w-full mt-1 p-2 text-xs border rounded">
                 </div>
 
                 <label class="flex items-center space-x-3 bg-slate-50 p-3 rounded-lg border">
@@ -49,10 +50,14 @@
                     <span class="text-sm text-slate-700 font-medium">4. One Day One Ayat</span>
                 </label>
 
-                <label class="flex items-center space-x-3 bg-slate-50 p-3 rounded-lg border">
-                    <input type="checkbox" name="tahajud" value="Ya" class="w-5 h-5 text-indigo-600">
-                    <span class="text-sm text-slate-700 font-medium">5. Tahajud Malam Ini</span>
-                </label>
+                <div class="bg-slate-50 p-3 rounded-lg border space-y-2">
+                    <span class="text-sm text-slate-700 font-medium block">5. Tahajud Malam Ini?</span>
+                    <div class="grid grid-cols-3 gap-2">
+                        <label class="flex items-center text-xs"><input type="radio" name="tahajud" value="Ya" class="mr-1"> Ya</label>
+                        <label class="flex items-center text-xs"><input type="radio" name="tahajud" value="Tidak" checked class="mr-1"> Tidak</label>
+                        <label class="flex items-center text-xs text-pink-600 font-semibold"><input type="radio" name="tahajud" value="Sedang Haid" class="mr-1"> Sedang Haid</label>
+                    </div>
+                </div>
 
                 <label class="flex items-center space-x-3 bg-slate-50 p-3 rounded-lg border">
                     <input type="checkbox" name="doa_saur" value="Ya" class="w-5 h-5 text-indigo-600">
@@ -76,7 +81,7 @@
     </div>
 
     <script>
-        const scriptURL = 'https://script.google.com/macros/s/AKfycbzaOaqZYJ0jn1P9AtGtcuGwBIuns97baw33v8R0VYSL455ihnxPkzl2cwJfFLop0rAm/exec'; // GANTI INI
+       const scriptURL = 'https://script.google.com/macros/s/AKfycbzaOaqZYJ0jn1P9AtGtcuGwBIuns97baw33v8R0VYSL455ihnxPkzl2cwJfFLop0rAm/exec'; // GANTI INI
         const form = document.getElementById('riyadohForm');
         const btn = document.getElementById('submitBtn');
         const msg = document.getElementById('responseMsg');
@@ -88,8 +93,8 @@
             const formData = new FormData(form);
             const data = Object.fromEntries(formData.entries());
             
-            // Mengubah checkbox yang tidak dicentang menjadi "Belum"
-            const checkboxes = ['istighfar', 'doa_nikah', 'one_day_ayat', 'tahajud', 'doa_saur'];
+            // Konversi checkbox yang kosong ke "Belum"
+            const checkboxes = ['istighfar', 'doa_nikah', 'one_day_ayat', 'doa_saur'];
             checkboxes.forEach(name => {
                 if(!data[name]) data[name] = "Belum";
             });
