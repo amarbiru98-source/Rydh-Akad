@@ -1,89 +1,111 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Monitoring Kegiatan Harian</title>
+    <title>Monitoring Riyadoh Akad</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-gray-100 min-h-screen flex items-center justify-center p-4">
-
-    <div class="bg-white p-8 rounded-xl shadow-md w-full max-w-md">
-        <h2 class="text-2xl font-bold mb-6 text-gray-800 text-center">Input Kegiatan Harian</h2>
+<body class="bg-slate-50 min-h-screen p-4">
+    <div class="max-w-md mx-auto bg-white rounded-2xl shadow-xl overflow-hidden border border-slate-200">
+        <div class="bg-indigo-600 p-6 text-center text-white">
+            <h2 class="text-xl font-bold">Riyadoh Menuju Akad</h2>
+            <p class="text-indigo-100 text-sm mt-1">Semoga Allah memberkahi ikhtiar kita</p>
+        </div>
         
-        <form id="monitoringForm" class="space-y-4">
+        <form id="riyadohForm" class="p-6 space-y-5">
             <div>
-                <label class="block text-sm font-medium text-gray-700">Username / Inisial</label>
-                <input type="text" name="username" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
-            </div>
-
-            <div>
-                <label class="block text-sm font-medium text-gray-700">Nama Kegiatan</label>
-                <input type="text" name="kegiatan" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
-            </div>
-
-            <div>
-                <label class="block text-sm font-medium text-gray-700">Kategori</label>
-                <select name="kategori" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
-                    <option value="Rutin">Rutin</option>
-                    <option value="Project">Project</option>
-                    <option value="Urgent">Urgent</option>
+                <label class="block text-sm font-semibold text-slate-700 mb-2">Siapa yang mengisi?</label>
+                <select name="username" class="w-full p-2 border rounded-lg focus:ring-2 focus:ring-indigo-500">
+                    <option value="Calon Suami">Calon Suami</option>
+                    <option value="Sisi">Sisi (Calon Istri)</option>
                 </select>
             </div>
 
-            <div>
-                <label class="block text-sm font-medium text-gray-700">Status</label>
-                <div class="flex space-x-4 mt-2">
-                    <label class="flex items-center"><input type="radio" name="status" value="Proses" checked class="mr-2"> Proses</label>
-                    <label class="flex items-center"><input type="radio" name="status" value="Selesai" class="mr-2"> Selesai</label>
+            <hr>
+
+            <div class="space-y-4">
+                <label class="flex items-center space-x-3 bg-slate-50 p-3 rounded-lg border">
+                    <input type="checkbox" name="istighfar" value="Sudah" class="w-5 h-5 text-indigo-600">
+                    <span class="text-sm text-slate-700 font-medium">1. Istighfar 100x</span>
+                </label>
+
+                <div class="bg-slate-50 p-3 rounded-lg border space-y-2">
+                    <span class="text-sm text-slate-700 font-medium block">2. Saum Sunnah hari ini?</span>
+                    <div class="flex space-x-4">
+                        <label class="flex items-center text-sm"><input type="radio" name="saum" value="Ya" class="mr-2"> Ya</label>
+                        <label class="flex items-center text-sm"><input type="radio" name="saum" value="Tidak" checked class="mr-2"> Tidak</label>
+                    </div>
+                    <input type="text" name="keterangan_saum" placeholder="Jenis saum (misal: Senin-Kamis)" class="w-full mt-2 p-2 text-sm border rounded">
+                </div>
+
+                <label class="flex items-center space-x-3 bg-slate-50 p-3 rounded-lg border">
+                    <input type="checkbox" name="doa_nikah" value="Sudah" class="w-5 h-5 text-indigo-600">
+                    <span class="text-sm text-slate-700 font-medium">3. Doa Keberkahan Nikah</span>
+                </label>
+
+                <label class="flex items-center space-x-3 bg-slate-50 p-3 rounded-lg border">
+                    <input type="checkbox" name="one_day_ayat" value="Sudah" class="w-5 h-5 text-indigo-600">
+                    <span class="text-sm text-slate-700 font-medium">4. One Day One Ayat</span>
+                </label>
+
+                <label class="flex items-center space-x-3 bg-slate-50 p-3 rounded-lg border">
+                    <input type="checkbox" name="tahajud" value="Ya" class="w-5 h-5 text-indigo-600">
+                    <span class="text-sm text-slate-700 font-medium">5. Tahajud Malam Ini</span>
+                </label>
+
+                <label class="flex items-center space-x-3 bg-slate-50 p-3 rounded-lg border">
+                    <input type="checkbox" name="doa_saur" value="Ya" class="w-5 h-5 text-indigo-600">
+                    <span class="text-sm text-slate-700 font-medium">6. Berdoa di Waktu Sahur</span>
+                </label>
+
+                <div class="bg-slate-50 p-3 rounded-lg border space-y-2">
+                    <span class="text-sm text-slate-700 font-medium block">7. Kata Mutiara Pernikahan?</span>
+                    <div class="flex space-x-4">
+                        <label class="flex items-center text-sm"><input type="radio" name="kata_mutiara" value="Sudah" class="mr-2"> Sudah</label>
+                        <label class="flex items-center text-sm"><input type="radio" name="kata_mutiara" value="Belum" checked class="mr-2"> Belum</label>
+                    </div>
                 </div>
             </div>
 
-            <div>
-                <label class="block text-sm font-medium text-gray-700">Keterangan Tambahan</label>
-                <textarea name="keterangan" rows="3" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"></textarea>
-            </div>
-
-            <button type="submit" id="submitBtn" class="w-full bg-blue-600 text-white font-bold py-2 px-4 rounded-md hover:bg-blue-700 transition duration-200">
-                Kirim Laporan
+            <button type="submit" id="submitBtn" class="w-full bg-indigo-600 text-white font-bold py-3 rounded-xl shadow-lg hover:bg-indigo-700 transition">
+                Simpan Laporan Hari Ini
             </button>
         </form>
-        
-        <p id="responseMsg" class="mt-4 text-center text-sm font-semibold"></p>
+        <p id="responseMsg" class="pb-6 text-center text-sm"></p>
     </div>
 
     <script>
-        const scriptURL = 'https://script.google.com/macros/s/AKfycbwS8dAhgafSttSrtvIaGzt8qCe7-z5OLyPLghY_Y0-RNNQk2RLWHFLnfRWmQO8h0gms/exec'; // <--- PASTE LINK ANDA DI SINI
-        const form = document.getElementById('monitoringForm');
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbzaOaqZYJ0jn1P9AtGtcuGwBIuns97baw33v8R0VYSL455ihnxPkzl2cwJfFLop0rAm/exec'; // GANTI INI
+        const form = document.getElementById('riyadohForm');
         const btn = document.getElementById('submitBtn');
         const msg = document.getElementById('responseMsg');
 
         form.addEventListener('submit', e => {
             e.preventDefault();
-            btn.disabled = true;
-            btn.innerText = "Mengirim...";
-            msg.innerText = "";
-
+            btn.disabled = true; btn.innerText = "Mengirim...";
+            
             const formData = new FormData(form);
             const data = Object.fromEntries(formData.entries());
+            
+            // Mengubah checkbox yang tidak dicentang menjadi "Belum"
+            const checkboxes = ['istighfar', 'doa_nikah', 'one_day_ayat', 'tahajud', 'doa_saur'];
+            checkboxes.forEach(name => {
+                if(!data[name]) data[name] = "Belum";
+            });
 
-            fetch(scriptURL, { 
-                method: 'POST', 
-                body: JSON.stringify(data)
-            })
-            .then(response => {
-                msg.innerText = "Berhasil! Data telah tersimpan di Spreadsheet.";
-                msg.className = "mt-4 text-center text-sm font-semibold text-green-600";
+            fetch(scriptURL, { method: 'POST', body: JSON.stringify(data)})
+            .then(() => {
+                msg.innerText = "Alhamdulillah, data tersimpan! ❤️";
+                msg.style.color = "green";
                 form.reset();
             })
             .catch(error => {
-                msg.innerText = "Waduh, ada error nih!";
-                msg.className = "mt-4 text-center text-sm font-semibold text-red-600";
-                console.error('Error!', error.message);
+                msg.innerText = "Gagal kirim, coba lagi ya.";
+                msg.style.color = "red";
             })
             .finally(() => {
-                btn.disabled = false;
-                btn.innerText = "Kirim Laporan";
+                btn.disabled = false; btn.innerText = "Simpan Laporan Hari Ini";
             });
         });
     </script>
